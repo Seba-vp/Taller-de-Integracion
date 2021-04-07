@@ -1,6 +1,6 @@
 
 
-source venv/bin/activate
+source app/bin/activate
 
 deactivate
 
