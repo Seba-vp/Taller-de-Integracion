@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+      
+{% block content%}
+    <h1>{{e_info.series}} Season {{e_info.season}} Episode {{e_info.episode}} : {{e_info.title}}</h1>
+
+    <p>Episode ID : {{e_info.episode_id}}</p>
+    <p>Title : {{e_info.title}}</p>
+    <p>Air Date : {{e_info.air_date}}</p>
+    
+    <p>Characters : </p>
+
+    {% for c in e_info.characters %}
+    <a href="{% url 'page-character' c %}"> <p> {{ c }}  </p></a>
+          
+
+
+    {% endfor %}
+
+    <!-- "characters":["Walter White","Jesse Pinkman","Skyler White","Henry Schrader","Marie Schrader","Walter White Jr.","Domingo Molina","Bogdan Wolynetz"], -->
+  
+          
+ 
+    
+
+{% endblock content %}
+
+

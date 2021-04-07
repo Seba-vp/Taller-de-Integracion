@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+      
+{% block content%}
+    <h1>{{serie}} Season {{number}}</h1>
+
+
+
+    {% for e in e_list %}
+    
+            <a href="{% url 'page-episode' e.episode_id %}"> <h3> Episode {{e.episode}}  {{e.title}}  </h3></a>
+          
+
+    {% endfor %} 
+    
+
+{% endblock content %}
+
+

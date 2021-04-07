@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+      
+{% block content%}
+    <h1>HOME</h1>
+
+    {% for season in seasons %}
+        {% if season.serie == 'Breaking Bad' %}
+            <a href="{% url 'page-season' season.serie season.number %}"> <h3> Breaking Bad, Season {{season.number}}   ( {{season.year}} )</h3></a>
+
+        {% elif season.serie == 'Better Call Saul' %}
+            <a href="{% url 'page-season' season.serie season.number %}"> <h3> Better Call Saul, Season {{season.number}}   ( {{season.year}} )</h3></a>
+        {% endif %}
+    {% endfor %} 
+
+
+{% endblock content %}
+
+

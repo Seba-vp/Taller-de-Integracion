@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+      
+{% block content%}
+    <h1>{{character.name}}</h1>
+
+    <img src="{{ character.img }}" alt="{{character.name}}"  width="500">
+
+    <p>Nickname : {{character.nickname}}</p>
+
+    <p>Portrayed : {{character.portrayed}}</p>
+
+    <p>Occupation : </p>
+    {% if character.occupation %}
+    {% for o in character.occupation %}
+        <p> {{ o }} </p>
+    {% endfor %}
+    {% else %}
+        <p> None </p>
+    {% endif %}
+
+
+    <p>Status : {{character.status}}</p>
+
+    <p>Category:  {{character.category}}</p>
+
+    <p>Breaking Bad Appearence : </p>
+    {% if character.appearance %}
+    {% for a in character.appearance %}
+        <a href="{% url 'page-season' 'Breaking Bad' a %}"> <p> Breaking Bad, Season {{a}}   </p></a>
+
+    {% endfor %}
+
+    {% else %}
+        <p> None </p>
+    {% endif %}
+
+    <p>Better Call Saul Appearence : </p>
+    {% if character.better_call_saul_appearance %}
+    {% for a in character.better_call_saul_appearance %}
+        <a href="{% url 'page-season' 'Better Call Saul' a %}"> <p> Better Call Saul, Season {{a}}   </p></a>
+    {% endfor %}
+    {% else %}
+        <p> None </p>
+    {% endif %}
+
+
+
+    <p>Quotes : </p>
+    {% if quotes %}
+    {% for q in quotes %}
+        <p> {{q.quote}} {{q.author}}. {{q.series}}.  </p>
+    {% endfor %}
+    {% else %}
+        <p> None </p>
+    {% endif %}
+    
+  
+        
+
+{% endblock content %}
+
+
