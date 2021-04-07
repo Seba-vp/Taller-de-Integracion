@@ -1,0 +1,11 @@
+
+
+source venv/bin/activate
+
+deactivate
+
+
+Correr app local:
+
+python3 manage.py runserver
+

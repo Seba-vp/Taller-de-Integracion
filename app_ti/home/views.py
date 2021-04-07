@@ -121,3 +121,14 @@ def character(request, char_name):
     }
     
     return render(request, 'character.html', context)
+
+
+
+def search_result(request, char_name):
+   
+
+    context = {
+         'title': 'Breaking App - Search Result'
+    }
+    
+    return render(request, 'search_result.html', context)
