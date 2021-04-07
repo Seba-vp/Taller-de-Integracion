@@ -2,7 +2,21 @@
       
 {% block content%}
 
-<h1>You Searched For ...</h1>
+<h1>You Searched For ... {{searched}} </h1>
+
+{% if found %}
+    {% for c in found %}
+    
+        <a href="{% url 'page-character' c.name %}"> <p> {{ c.name }}  </p></a>
+
+    {% endfor %} 
+{% else %}
+
+<h1> Nothing :( </h1>
+
+{% endif %}
+
+
     
 
 

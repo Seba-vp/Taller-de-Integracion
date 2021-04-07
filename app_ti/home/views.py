@@ -112,7 +112,6 @@ def character(request, char_name):
 
     character = character_raw[0]
     
-    print(quotes)
 
     context = {
         'character': character,
@@ -124,11 +123,63 @@ def character(request, char_name):
 
 
 
-def search_result(request, char_name):
-   
+def search_result(request):
 
-    context = {
-         'title': 'Breaking App - Search Result'
-    }
-    
-    return render(request, 'search_result.html', context)
+    if request.method == "POST":
+        searched = request.POST['searched']
+        if searched != '':
+            li=searched.split()
+
+            print('#'*30)
+            print(searched)
+            print('#'*30)
+
+            found = requests.get('http://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+' '.join(li)).json()
+
+            
+
+            # Lo de abajo, en el caso que el query retorne el maximo de 10 elementos, busca todos los characters y foltra denuevo para retornar mas de 10 resultados.
+            if len(found) == 10:
+                all_characters = []
+                found2 = requests.get( 'http://tarea-1-breaking-bad.herokuapp.com/api/characters' + '?limit=10&offset=0').json()
+                all_characters = all_characters + found2
+                i=10
+                while len(found2) == 10:
+                        
+                        found2 = requests.get( 'http://tarea-1-breaking-bad.herokuapp.com/api/characters' + '?limit=10&offset='+str(i) ).json()
+                        all_characters = all_characters + found2
+                        i += 10
+                print('+'*30)
+                print('ALL CHARACTERS')
+                print(all_characters)
+                print('+'*30)
+
+                found = []
+
+                for c in all_characters:
+                    if ' '.join(li) in c['name'] :
+                        found.append(c)
+                     
+            print('#'*30)
+            print(found)
+            print('#'*30)
+
+            context = {
+                'title': 'Breaking App - Search Result',
+                'found': found,
+                'searched': searched
+            }
+
+            return render(request, 'search_result.html', context)
+        else:
+            context = {
+            'title': 'Breaking App - Search Result',
+        }
+        return render(request, 'search_result.html', context)
+
+    else:
+        context = {
+            'title': 'Breaking App - Search Result',
+        }
+        return render(request, 'search_result.html', context)
+        
