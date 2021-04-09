@@ -1,60 +1,71 @@
 {% extends "base.html" %}
       
 {% block content%}
-    <h1>{{character.name}}</h1>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <h1 class="display-4 fw-normal">{{character.name}}</h1>
+    </div>
+</div>
+<div class="div-container">
 
-    <img src="{{ character.img }}" alt="{{character.name}}"  width="500">
+    <img src="{{ character.img }}" alt="{{character.name}}" class="center_image">
 
-    <p>Nickname : {{character.nickname}}</p>
 
-    <p>Portrayed : {{character.portrayed}}</p>
-
-    <p>Occupation : </p>
+    <hr class="featurette-divider" >
+    <h3>Nickname : {{character.nickname}}</h3>
+    <hr class="featurette-divider" >
+    <h3>Portrayed : {{character.portrayed}}</h3>
+    <hr class="featurette-divider" >
+    <h3>Occupation : </h3>
     {% if character.occupation %}
     {% for o in character.occupation %}
-        <p> {{ o }} </p>
+        <h5>{{ o }} </h5>
     {% endfor %}
     {% else %}
-        <p> None </p>
+        <h5>None </h5>
     {% endif %}
 
-
-    <p>Status : {{character.status}}</p>
-
-    <p>Category:  {{character.category}}</p>
-
-    <p>Breaking Bad Appearence : </p>
+    <hr class="featurette-divider" >
+    <h3>Status : {{character.status}}</h3>
+    <hr class="featurette-divider" >
+    <h3>Category:  {{character.category}}</h3>
+    <hr class="featurette-divider" >
+    <h3>Breaking Bad Appearence : </h3>
     {% if character.appearance %}
     {% for a in character.appearance %}
-        <a href="{% url 'page-season' 'Breaking Bad' a %}"> <p> Breaking Bad, Season {{a}}   </p></a>
-
+    <div class="div-lista">
+        <a href="{% url 'page-season' 'Breaking Bad' a %}"> <h5> Breaking Bad, Season {{a}}   </h5></a>
+    </div>
     {% endfor %}
 
     {% else %}
-        <p> None </p>
+        <h5> None </h5>
     {% endif %}
-
-    <p>Better Call Saul Appearence : </p>
+    <hr class="featurette-divider" >
+    <h3>Better Call Saul Appearence : </h3>
     {% if character.better_call_saul_appearance %}
     {% for a in character.better_call_saul_appearance %}
-        <a href="{% url 'page-season' 'Better Call Saul' a %}"> <p> Better Call Saul, Season {{a}}   </p></a>
+    <div class="div-lista">
+        <a href="{% url 'page-season' 'Better Call Saul' a %}"> <h5> Better Call Saul, Season {{a}}   </h5></a>
+    </div>
     {% endfor %}
     {% else %}
-        <p> None </p>
+        <h5> None </h5>
     {% endif %}
 
 
-
-    <p>Quotes : </p>
+    <hr class="featurette-divider" >
+    <h3>Quotes : </h3>
     {% if quotes %}
     {% for q in quotes %}
-        <p> {{q.quote}} {{q.author}}. {{q.series}}.  </p>
+        <h5>- {{q.quote}} {{q.author}}. {{q.series}}.  </h5>
+        <br>
     {% endfor %}
     {% else %}
-        <p> None </p>
+        <h5> None </h5>
     {% endif %}
     
-  
+</div>
         
 
 {% endblock content %}

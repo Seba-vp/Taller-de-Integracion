@@ -1,20 +1,38 @@
 {% extends "base.html" %}
       
 {% block content%}
-    <h1>{{e_info.series}} Season {{e_info.season}} Episode {{e_info.episode}} : {{e_info.title}}</h1>
-
-    <p>Episode ID : {{e_info.episode_id}}</p>
-    <p>Title : {{e_info.title}}</p>
-    <p>Air Date : {{e_info.air_date}}</p>
     
-    <p>Characters : </p>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+          <h1 class="display-4 fw-normal">{{e_info.series}} Season {{e_info.season}} Episode {{e_info.episode}} : {{e_info.title}}</h1>
+        </div>
+    </div>
+
+
+    <div class="div-container">
+    <hr class="featurette-divider" >
+    <h3>Episode ID : {{e_info.episode_id}}</h3>
+    <hr class="featurette-divider" >
+    <h3>Title : {{e_info.title}}</h3>
+    <hr class="featurette-divider" >
+
+    <!-- Arreglo la fecha -->
+
+    <!-- <h3>Air Date : {{e_info.air_date}}</h3> -->
+    <h3>Air Date : {{fecha}}</h3>
+    <hr class="featurette-divider" >
+    
+    <h3>Characters : </h3>
 
     {% for c in e_info.characters %}
-    <a href="{% url 'page-character' c %}"> <p> {{ c }}  </p></a>
+        
+    <a href="{% url 'page-character' c %}"> <h5> {{ c }}  </h5></a>
+    </div>
           
 
 
     {% endfor %}
+    </div>
 
     <!-- "characters":["Walter White","Jesse Pinkman","Skyler White","Henry Schrader","Marie Schrader","Walter White Jr.","Domingo Molina","Bogdan Wolynetz"], -->
   

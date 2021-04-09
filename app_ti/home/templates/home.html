@@ -1,16 +1,35 @@
 {% extends "base.html" %}
       
 {% block content%}
-    <h1>HOME</h1>
+    
 
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+          <h1 class="display-4 fw-normal">Breaking App</h1>
+          <p class="lead fw-normal">Eige una temporada de Breaking Bad o de Better Call Saul, para ver todos los capitulos y mas información. </p>
+        </div>
+    </div>
+
+
+
+    <div class="div-container">
+    <hr class="featurette-divider" >
     {% for season in seasons %}
+        
         {% if season.serie == 'Breaking Bad' %}
-            <a href="{% url 'page-season' season.serie season.number %}"> <h3> Breaking Bad, Season {{season.number}}   ( {{season.year}} )</h3></a>
-
+            <div class="div-lista">
+                <a href="{% url 'page-season' season.serie season.number %}" class="lista"><h3>Breaking Bad, Season {{season.number}}   ( {{season.year}} )</h3></a>
+            </div>
         {% elif season.serie == 'Better Call Saul' %}
-            <a href="{% url 'page-season' season.serie season.number %}"> <h3> Better Call Saul, Season {{season.number}}   ( {{season.year}} )</h3></a>
+        <div class="div-lista">
+            <a href="{% url 'page-season' season.serie season.number %}" class="lista"><h3>Better Call Saul, Season {{season.number}}   ( {{season.year}} )</h3></a>
+        </div>
+
         {% endif %}
+
+        <hr class="featurette-divider" >
     {% endfor %} 
+    </div>
 
 
 {% endblock content %}

@@ -94,11 +94,13 @@ def episode(request, episode_id):
 
     e_info = episode[0]
 
-    print(e_info)
+    # print(e_info)
+    fecha = e_info['air_date'].split('T')[0]
 
     context = {
         'e_info': e_info,
-         'title': 'Breaking App - Episode'
+         'title': 'Breaking App - Episode',
+         'fecha': fecha
     }
     
     return render(request, 'episode.html', context)
@@ -130,9 +132,9 @@ def search_result(request):
         if searched != '':
             li=searched.split()
 
-            print('#'*30)
-            print(searched)
-            print('#'*30)
+            # print('#'*30)
+            # print(searched)
+            # print('#'*30)
 
             found = requests.get('http://tarea-1-breaking-bad.herokuapp.com/api/characters?name='+' '.join(li)).json()
 
@@ -149,10 +151,10 @@ def search_result(request):
                         found2 = requests.get( 'http://tarea-1-breaking-bad.herokuapp.com/api/characters' + '?limit=10&offset='+str(i) ).json()
                         all_characters = all_characters + found2
                         i += 10
-                print('+'*30)
-                print('ALL CHARACTERS')
-                print(all_characters)
-                print('+'*30)
+                # print('+'*30)
+                # print('ALL CHARACTERS')
+                # print(all_characters)
+                # print('+'*30)
 
                 found = []
 
@@ -160,9 +162,9 @@ def search_result(request):
                     if ' '.join(li) in c['name'] :
                         found.append(c)
                      
-            print('#'*30)
-            print(found)
-            print('#'*30)
+            # print('#'*30)
+            # print(found)
+            # print('#'*30)
 
             context = {
                 'title': 'Breaking App - Search Result',
